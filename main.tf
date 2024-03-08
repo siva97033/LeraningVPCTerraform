@@ -49,7 +49,7 @@ tags = merge(
 
 resource "aws_nat_gateway" NAT{
   allocation_id = aws_eip.EIP.id
-  subnet_id     = aws_subnet.public_subnets.id
+  subnet_id     = element(aws_subnet.public_subnets[*].id,count.index)
 
   tags = merge(
     var.tags,
